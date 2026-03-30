@@ -85,8 +85,8 @@ RSpec.describe Dashboard::AreaChartComponent, type: :component do
       value: "32.4k",
       description: "Users this week",
       chart_data: {
-        series: [{ name: "Users", data: [100, 200, 300] }],
-        categories: ["Day 1", "Day 2", "Day 3"]
+        series: [ { name: "Users", data: [ 100, 200, 300 ] } ],
+        categories: [ "Day 1", "Day 2", "Day 3" ]
       }
     )
 
@@ -95,4 +95,3 @@ RSpec.describe Dashboard::AreaChartComponent, type: :component do
     expect(page).to have_css("[data-area-chart-options-value]")
   end
 end
-

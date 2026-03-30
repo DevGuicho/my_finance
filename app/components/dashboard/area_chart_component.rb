@@ -51,12 +51,11 @@ module Dashboard
     end
 
     def default_series
-      [{ name: "Data", data: [6500, 6418, 6456, 6526, 6356, 6456] }]
+      [ { name: "Data", data: [ 6500, 6418, 6456, 6526, 6356, 6456 ] } ]
     end
 
     def default_categories
-      ['01 February', '02 February', '03 February', '04 February', '05 February', '06 February', '07 February']
+      [ "01 February", "02 February", "03 February", "04 February", "05 February", "06 February", "07 February" ]
     end
   end
 end
-

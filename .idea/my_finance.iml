@@ -72,7 +72,6 @@
     <orderEntry type="library" scope="PROVIDED" name="ffi (v1.17.4, rbenv: 4.0.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="fugit (v1.12.1, rbenv: 4.0.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="globalid (v1.3.0, rbenv: 4.0.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="heroicon (v1.0.0, rbenv: 4.0.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="i18n (v1.14.8, rbenv: 4.0.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="image_processing (v1.14.0, rbenv: 4.0.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="importmap-rails (v2.2.3, rbenv: 4.0.2) [gem]" level="application" />
@@ -91,6 +90,7 @@
     <orderEntry type="library" scope="PROVIDED" name="lint_roller (v1.1.0, rbenv: 4.0.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="logger (v1.7.0, rbenv: 4.0.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="loofah (v2.25.1, rbenv: 4.0.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="lucide-rails (v0.7.4, rbenv: 4.0.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mail (v2.9.0, rbenv: 4.0.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="marcel (v1.1.0, rbenv: 4.0.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mini_magick (v5.3.1, rbenv: 4.0.2) [gem]" level="application" />
@@ -145,8 +145,9 @@
     <orderEntry type="library" scope="PROVIDED" name="rspec-support (v3.13.7, rbenv: 4.0.2) [gem]" level="application" />
     <orderEntry type="library" scope="TEST" name="rubocop (v1.86.0, rbenv: 4.0.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubocop-ast (v1.49.1, rbenv: 4.0.2) [gem]" level="application" />
-    <orderEntry type="library" scope="TEST" name="rubocop-rails (v2.34.3, rbenv: 4.0.2) [gem]" level="application" />
-    <orderEntry type="library" scope="TEST" name="rubocop-rspec (v3.9.0, rbenv: 4.0.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rubocop-performance (v1.26.1, rbenv: 4.0.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rubocop-rails (v2.34.3, rbenv: 4.0.2) [gem]" level="application" />
+    <orderEntry type="library" scope="TEST" name="rubocop-rails-omakase (v1.1.0, rbenv: 4.0.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ruby-progressbar (v1.13.0, rbenv: 4.0.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ruby-vips (v2.3.0, rbenv: 4.0.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="securerandom (v0.4.1, rbenv: 4.0.2) [gem]" level="application" />

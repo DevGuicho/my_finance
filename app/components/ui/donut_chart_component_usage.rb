@@ -73,7 +73,7 @@ module Examples
       # <%= render Ui::CardComponent.new(class: "flex-1/3") do %>
       #   <h6 class="text-md mb-1">Gastos por Categoría</h6>
       #   <p class="text-body-subtle text-sm mb-4">Este mes</p>
-      #   
+      #
       #   <%= render Ui::DonutChartComponent.new(
       #     series: [1244, 785, 433, 267],
       #     labels: ["Alimentos", "Transporte", "Entretenimiento", "Servicios"],
@@ -83,4 +83,3 @@ module Examples
     end
   end
 end
-

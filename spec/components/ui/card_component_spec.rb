@@ -213,5 +213,3 @@ RSpec.describe Ui::CardComponent, type: :component do
     end
   end
 end
-
-

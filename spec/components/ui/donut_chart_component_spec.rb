@@ -3,8 +3,8 @@
 require "rails_helper"
 
 RSpec.describe Ui::DonutChartComponent, type: :component do
-  let(:series) { [44, 55, 13, 33] }
-  let(:labels) { ["Food", "Transport", "Entertainment", "Services"] }
+  let(:series) { [ 44, 55, 13, 33 ] }
+  let(:labels) { [ "Food", "Transport", "Entertainment", "Services" ] }
 
   it "renders the component" do
     render_inline(described_class.new(series: series, labels: labels))
@@ -48,7 +48,7 @@ RSpec.describe Ui::DonutChartComponent, type: :component do
   end
 
   it "allows custom colors" do
-    colors = ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0"]
+    colors = [ "#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0" ]
     component = described_class.new(series: series, labels: labels, colors: colors)
     data = JSON.parse(component.chart_data)
 
@@ -63,4 +63,3 @@ RSpec.describe Ui::DonutChartComponent, type: :component do
     expect(data["customOptions"]).to eq(custom_options.deep_stringify_keys)
   end
 end
-

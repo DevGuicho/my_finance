@@ -9,5 +9,4 @@ class Account < ApplicationRecord
     savings: "4",
     other: "5"
   }
-
 end
