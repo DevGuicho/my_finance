@@ -1,0 +1,151 @@
+<div class="px-8 py-8">
+  <section class="mb-8">
+    <h1 class="text-3xl font-bold mb-2">Dashboard</h1>
+    <p class="text-body">Welcome back! Here's an overview of your finances</p>
+  </section>
+
+  <section class="flex justify-between gap-6">
+    <%= render(Dashboard::StatCardComponent.new(title: "Total Balance",
+                                                subtitle: "Across all accounts",
+                                                amount: "$17,240.25")) do %>
+      <%= lucide_icon "wallet", class: "text-body w-5 h-5" %>
+    <% end %>
+
+    <%= render(Dashboard::StatCardComponent.new(title: "Total Income",
+                                                subtitle: "This month",
+                                                amount: "+$6,670.00",
+                                                variant: :positive)) do %>
+      <%= lucide_icon "trending-up", class: "text-green-500 w-5 h-5" %>
+    <% end %>
+
+    <%= render(Dashboard::StatCardComponent.new(title: "Total Expenses",
+                                                subtitle: "This month",
+                                                amount: "-$907.89",
+                                                variant: :negative)) do %>
+      <%= lucide_icon "trending-down", class: "text-red-500 w-5 h-5" %>
+    <% end %>
+
+    <%= render(Dashboard::StatCardComponent.new(title: "Net Income",
+                                                subtitle: "This month",
+                                                amount: "+$5,762.11",
+                                                variant: :positive)) do %>
+      <%= lucide_icon "move-up-right", class: "text-green-500 w-5 h-5" %>
+    <% end %>
+  </section>
+
+  <section class="mt-8 flex gap-4">
+    <%= render Ui::CardComponent.new(class: "flex-2/3") do %>
+      <h6 class="text-md mb-1">Balance Trend</h6>
+      <p class="text-body-subtle text-sm">Your balance over time</p>
+
+      <%= render Ui::AreaChartComponent.new(
+        series: [
+          { name: "Users", data: [100, 200, 150, 300, 250, 400] }
+        ],
+        categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
+      ) %>
+    <% end %>
+
+    <%= render Ui::CardComponent.new(class: "flex-1/3") do %>
+      <h6 class="text-md mb-1">Expenses by Category</h6>
+      <p class="text-body-subtle text-sm mb-4">This month</p>
+
+      <%= render Ui::DonutChartComponent.new(
+        series: [440, 280, 150, 120],
+        labels: ["Food", "Transport", "Entertainment", "Services"],
+        height: "300px"
+      ) %>
+    <% end %>
+  </section>
+
+  <section class="flex mt-8 gap-4">
+    <%= render Ui::CardComponent.new(class: "grow") do %>
+      <h6 class="text-md mb-1">Recent transactions</h6>
+      <p class="text-body-subtle text-sm mb-8">Latest activity</p>
+
+      <ol>
+        <li class="flex gap-4 justify-between border-b border-b-gray-200 pb-4 mb-6">
+          <div class="flex align-middle gap-4">
+            <div class="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-green-50 rounded-base">
+              <span class="font-medium text-body">💼</span>
+            </div>
+            <div class="inline-flex flex-col">
+              <strong class="text-sm">Monthly Salary</strong>
+              <small class="text-body-subtle">Salary • Main Checking</small>
+            </div>
+          </div>
+
+          <div class="flex flex-col items-end">
+            <span class="text-sm font-medium text-green-500">+$5,000.00</span>
+            <small class="text-body-subtle">Jun 30</small>
+          </div>
+        </li>
+
+        <li class="flex gap-4 justify-between border-b border-b-gray-200 pb-4 mb-6">
+          <div class="flex align-middle gap-4">
+            <div class="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-red-50 rounded-base">
+              <span class="font-medium text-body">🛒</span>
+            </div>
+            <div class="inline-flex flex-col">
+              <strong class="text-sm">Grocery Shopping</strong>
+              <small class="text-body-subtle">Groceries • Main Checking</small>
+            </div>
+          </div>
+
+          <div class="flex flex-col items-end">
+            <span class="text-sm font-medium text-red-500">-$125.50</span>
+            <small class="text-body-subtle">Jun 30</small>
+          </div>
+        </li>
+      </ol>
+
+    <% end %>
+
+    <%= render Ui::CardComponent.new(class: "grow") do %>
+      <h6 class="text-md mb-1">Accounts</h6>
+      <p class="text-body-subtle text-sm mb-8">All your accounts</p>
+
+
+      <ol>
+        <li class="flex gap-4 justify-between border-b border-b-gray-200 pb-4 mb-6">
+          <div class="flex align-middle gap-4">
+            <div class="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-neutral-tertiary rounded-base">
+              <span class="font-medium text-body"><%= lucide_icon "wallet" %></span>
+            </div>
+            <div class="inline-flex flex-col items-start">
+              <strong class="text-sm">Main Checking</strong>
+              <span class="bg-brand-softer text-fg-brand-strong text-xs font-medium px-1.5 py-0.5 rounded">Debit</span>
+            </div>
+          </div>
+
+          <div class="flex flex-col items-end">
+            <span class="text-sm font-medium text-green-500">+$5,000.00</span>
+            <small class="text-body-subtle">MXN</small>
+          </div>
+        </li>
+
+
+
+        <li class="flex gap-4 justify-between border-b border-b-gray-200 pb-4 mb-6">
+          <div class="flex align-middle gap-4">
+            <div class="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-neutral-tertiary rounded-base">
+              <span class="font-medium text-body"><%= lucide_icon "wallet" %></span>
+            </div>
+            <div class="inline-flex flex-col items-start">
+              <strong class="text-sm">Oro Banamex</strong>
+              <span class="bg-warning-soft text-fg-warning text-xs font-medium px-1.5 py-0.5 rounded">Credit</span>
+            </div>
+          </div>
+
+          <div class="flex flex-col items-end">
+            <span class="text-sm font-medium text-red-500">+$120,000.00</span>
+            <small class="text-body-subtle">MXN</small>
+          </div>
+        </li>
+
+      </ol>
+
+    <% end %>
+  </section>
+</div>
+

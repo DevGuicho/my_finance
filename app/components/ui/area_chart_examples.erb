@@ -1,0 +1,230 @@
+# Ejemplos de Uso: Ui::AreaChartComponent
+
+# ============================================
+# 1. USO BÁSICO - Solo el gráfico
+# ============================================
+
+<%= render Ui::AreaChartComponent.new(
+  series: [
+    { name: "Users", data: [100, 200, 150, 300, 250, 400] }
+  ],
+  categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
+) %>
+
+
+# ============================================
+# 2. GRÁFICO CON COLOR PERSONALIZADO
+# ============================================
+
+<%= render Ui::AreaChartComponent.new(
+  series: [
+    { name: "Revenue", data: [5000, 6000, 5500, 7000, 6500, 8000] }
+  ],
+  categories: ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5", "Week 6"],
+  color: "#10b981"  # Verde
+) %>
+
+
+# ============================================
+# 3. GRÁFICO CON DIMENSIONES PERSONALIZADAS
+# ============================================
+
+<div class="w-full">
+  <%= render Ui::AreaChartComponent.new(
+    series: [
+      { name: "Sales", data: [45, 52, 48, 61, 58, 65] }
+    ],
+    categories: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    height: "350px",
+    max_width: "600px",
+    stroke_width: 4
+  ) %>
+</div>
+
+
+# ============================================
+# 4. GRÁFICO CON TOOLTIPS Y GRID VISIBLE
+# ============================================
+
+<%= render Ui::AreaChartComponent.new(
+  series: [
+    { name: "Temperature", data: [22, 24, 23, 25, 26, 24, 23] }
+  ],
+  categories: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+  chart_options: {
+    tooltip: {
+      enabled: true,
+      x: { show: true }
+    },
+    grid: {
+      show: true,
+      borderColor: '#e5e7eb',
+      strokeDashArray: 4
+    },
+    yaxis: {
+      show: true,
+      labels: {
+        style: { colors: '#6b7280' }
+      }
+    },
+    xaxis: {
+      labels: {
+        show: true,
+        style: { colors: '#6b7280' }
+      }
+    }
+  }
+) %>
+
+
+# ============================================
+# 5. MÚLTIPLES SERIES EN UN GRÁFICO
+# ============================================
+
+<%= render Ui::AreaChartComponent.new(
+  series: [
+    { name: "Product A", data: [30, 40, 35, 50, 49, 60, 70] },
+    { name: "Product B", data: [20, 25, 22, 30, 28, 35, 40] }
+  ],
+  categories: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+  chart_options: {
+    stroke: { curve: 'smooth' },
+    colors: ['#3b82f6', '#10b981']
+  }
+) %>
+
+
+# ============================================
+# 6. GRÁFICO DENTRO DE UN CARD PERSONALIZADO
+# ============================================
+
+<div class="bg-white rounded-lg shadow-md p-6">
+  <div class="mb-4">
+    <h3 class="text-xl font-bold text-gray-900">Monthly Revenue</h3>
+    <p class="text-sm text-gray-600">Last 6 months performance</p>
+  </div>
+
+  <%= render Ui::AreaChartComponent.new(
+    series: [
+      { name: "Revenue", data: [45000, 52000, 48000, 61000, 58000, 65000] }
+    ],
+    categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+    height: "300px"
+  ) %>
+
+  <div class="mt-4 pt-4 border-t">
+    <div class="flex justify-between text-sm">
+      <span class="text-gray-600">Total</span>
+      <span class="font-semibold text-gray-900">$329,000</span>
+    </div>
+  </div>
+</div>
+
+
+# ============================================
+# 7. GRID DE MÚLTIPLES GRÁFICOS PEQUEÑOS
+# ============================================
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+  <!-- Chart 1 -->
+  <div class="bg-white p-4 rounded-lg shadow">
+    <h4 class="text-sm font-semibold text-gray-700 mb-2">Users</h4>
+    <%= render Ui::AreaChartComponent.new(
+      series: [{ name: "Users", data: [100, 150, 120, 180, 160, 200] }],
+      categories: ["W1", "W2", "W3", "W4", "W5", "W6"],
+      height: "150px",
+      color: "#3b82f6",
+      stroke_width: 3
+    ) %>
+  </div>
+
+  <!-- Chart 2 -->
+  <div class="bg-white p-4 rounded-lg shadow">
+    <h4 class="text-sm font-semibold text-gray-700 mb-2">Revenue</h4>
+    <%= render Ui::AreaChartComponent.new(
+      series: [{ name: "Revenue", data: [5000, 6000, 5500, 7000, 6500, 8000] }],
+      categories: ["W1", "W2", "W3", "W4", "W5", "W6"],
+      height: "150px",
+      color: "#10b981",
+      stroke_width: 3
+    ) %>
+  </div>
+
+  <!-- Chart 3 -->
+  <div class="bg-white p-4 rounded-lg shadow">
+    <h4 class="text-sm font-semibold text-gray-700 mb-2">Orders</h4>
+    <%= render Ui::AreaChartComponent.new(
+      series: [{ name: "Orders", data: [30, 40, 35, 50, 45, 60] }],
+      categories: ["W1", "W2", "W3", "W4", "W5", "W6"],
+      height: "150px",
+      color: "#f59e0b",
+      stroke_width: 3
+    ) %>
+  </div>
+</div>
+
+
+# ============================================
+# 8. GRÁFICO CON DATOS EN TIEMPO REAL (Ejemplo con Turbo Streams)
+# ============================================
+
+<div id="realtime-chart" class="bg-white p-6 rounded-lg shadow">
+  <h3 class="text-lg font-semibold mb-4">Live Data</h3>
+
+  <%= render Ui::AreaChartComponent.new(
+    series: [
+      { name: "Active Users", data: @realtime_data }
+    ],
+    categories: @realtime_labels,
+    height: "250px",
+    chart_options: {
+      chart: {
+        animations: {
+          enabled: true,
+          dynamicAnimation: {
+            enabled: true,
+            speed: 350
+          }
+        }
+      }
+    }
+  ) %>
+</div>
+
+
+# ============================================
+# 9. GRÁFICO SIN CATEGORÍAS (Índices numéricos)
+# ============================================
+
+<%= render Ui::AreaChartComponent.new(
+  series: [
+    { name: "Measurements", data: [10, 20, 15, 30, 25, 40, 35, 50] }
+  ],
+  # Sin categories - usará índices 0, 1, 2, 3...
+  height: "250px"
+) %>
+
+
+# ============================================
+# 10. GRÁFICO CON GRADIENTE PERSONALIZADO
+# ============================================
+
+<%= render Ui::AreaChartComponent.new(
+  series: [
+    { name: "Performance", data: [65, 72, 68, 75, 80, 85, 82, 90] }
+  ],
+  categories: ["Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8"],
+  color: "#8b5cf6",
+  chart_options: {
+    fill: {
+      type: "gradient",
+      gradient: {
+        shadeIntensity: 1,
+        opacityFrom: 0.7,
+        opacityTo: 0.2,
+        stops: [0, 90, 100]
+      }
+    }
+  }
+) %>
+
