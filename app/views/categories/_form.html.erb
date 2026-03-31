@@ -1,0 +1,40 @@
+<%= form_with(model: category, class: "space-y-6") do |form| %>
+  <% if category.errors.any? %>
+    <div class="bg-red-50 border border-red-200 text-red-800 rounded-lg p-4 mb-4">
+      <h3 class="font-medium mb-2"><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h3>
+      <ul class="list-disc list-inside">
+        <% category.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+    <%= form.text_field :name,
+        class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-brand focus:border-brand block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white",
+        placeholder: "e.g., Salary, Groceries, Entertainment",
+        required: true,
+        autofocus: true %>
+  </div>
+
+  <div>
+    <%= form.label :kind, "Type", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+    <%= form.select :kind,
+        Category.kinds.keys.map { |k| [k.titleize, k] },
+        {},
+        class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-brand focus:border-brand block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:text-white",
+        required: true %>
+  </div>
+
+  <div class="flex justify-end gap-3">
+    <%= link_to "Cancel", close_path,
+                data: { turbo_stream: true },
+                class: "text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600" %>
+    <%= form.submit "Create Category",
+        class: "text-white bg-brand hover:bg-brand-strong focus:ring-4 focus:outline-none focus:ring-brand-medium font-medium rounded-lg text-sm px-5 py-2.5 text-center cursor-pointer" %>
+  </div>
+<% end %>
+
+

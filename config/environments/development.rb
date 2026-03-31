@@ -37,7 +37,8 @@ Rails.application.configure do
   # Make template changes take effect immediately.
   config.action_mailer.perform_caching = false
 
-  config.action_mailer.delivery_method = :letter_opener
+  # Configurar letter_opener_web para previsualizar correos en el navegador
+  config.action_mailer.delivery_method = :letter_opener_web
   config.action_mailer.perform_deliveries = true
 
   # Set localhost to be used by links generated in mailer templates.

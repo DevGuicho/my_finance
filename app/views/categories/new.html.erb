@@ -1,0 +1,5 @@
+<%= turbo_frame_tag @category do %>
+  <%= render "shared/modal", title: "Add Category", close_path: categories_path do %>
+    <%= render partial: "categories/form", locals: { category: @category, close_path: categories_path } %>
+  <% end %>
+<% end %>
