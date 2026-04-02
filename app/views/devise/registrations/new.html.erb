@@ -3,7 +3,6 @@
   <p class="text-body-subtle">Create your account to get started.</p>
 </div>
 
-
 <%= render Ui::CardComponent.new do %>
   <div class="space-y-4 md:space-y-6 ">
     <div>
@@ -12,7 +11,6 @@
       </h2>
       <p class="text-body-subtle text-sm">Fill in your details to create an account</p>
     </div>
-
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "space-y-4 md:space-y-6 w-96" }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>

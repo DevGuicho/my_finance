@@ -78,6 +78,7 @@ group :development, :test do
   gem "rspec-rails"
   gem "factory_bot_rails"
   gem "faker"
+  gem "erb_lint"
 
   # Preview email in the default browser instead of sending it.
   gem "letter_opener"
