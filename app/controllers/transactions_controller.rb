@@ -12,7 +12,6 @@ class TransactionsController < ApplicationController
   end
 
   def create
-
     account = policy_scope(Account).find(transaction_params[:account_id])
     category = policy_scope(Category).find(transaction_params[:category_id])
 

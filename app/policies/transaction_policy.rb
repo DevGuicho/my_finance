@@ -6,6 +6,6 @@ class TransactionPolicy < ApplicationPolicy
   end
 
   def permitted_attributes
-    [:amount, :occurred_on, :description, :kind, :account_id, :category_id]
+    [ :amount, :occurred_on, :description, :kind, :account_id, :category_id ]
   end
 end
