@@ -1,0 +1,5 @@
+<%= turbo_frame_tag @account do %>
+  <%= render "shared/modal", title: "Add Account" do %>
+    <%= render partial: "accounts/form", locals: { account: @account } %>
+  <% end %>
+<% end %>

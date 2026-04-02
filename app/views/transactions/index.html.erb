@@ -1,0 +1,97 @@
+<section class="flex justify-between align-middle items-center mb-8">
+  <div>
+    <h2 class="text-3xl font-bold mb-2">Transactions</h2>
+    <p class="text-body-subtle">Manage and track all your transactions</p>
+  </div>
+  <%= link_to new_transaction_path,
+              data: { turbo_frame: dom_id(Transaction.new) },
+              class: "cursor-pointer inline-flex items-center  text-white bg-brand hover:bg-brand-strong box-border border border-transparent focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-3 py-2 focus:outline-none" do %>
+    <%= lucide_icon "plus", class: "w-4 h-4 me-1.5 -ms-0.5" %>
+    Add Transaction
+  <% end %>
+</section>
+
+<section class="mb-8">
+  <%= render Ui::CardComponent.new do %>
+    <%= form_for(:filter, url: transactions_path, class: "grid grid-cols-5 gap-4", data: { turbo_frame: "transactions_list" }) do |form| %>
+      <div>
+        <%= form.label :search, class: "block mb-2.5 text-sm font-medium text-heading" %>
+
+        <div class="relative">
+          <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+            <svg class="w-4 h-4 text-body" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
+            </svg>
+          </div>
+          <%= form.search_field :search, class: "block w-full p-3 ps-9 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body" %>
+        </div>
+      </div>
+      <div>
+        <%= form.label :from_date, class: "block mb-2.5 text-sm font-medium text-heading" %>
+        <div class="relative max-w-sm">
+          <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+            <svg class="w-4 h-4 text-body" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 10h16m-8-3V4M7 7V4m10 3V4M5 20h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Zm3-7h.01v.01H8V13Zm4 0h.01v.01H12V13Zm4 0h.01v.01H16V13Zm-8 4h.01v.01H8V17Zm4 0h.01v.01H12V17Zm4 0h.01v.01H16V17Z"/>
+            </svg>
+          </div>
+          <%= form.text_field :from_date, class: "block w-full ps-9 pe-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand px-3 py-2.5 shadow-xs placeholder:text-body", placeholder: "Select date", datepicker: "" %>
+        </div>
+      </div>
+
+      <div>
+        <%= form.label :to_date, class: "block mb-2.5 text-sm font-medium text-heading" %>
+        <div class="relative max-w-sm">
+          <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+            <svg class="w-4 h-4 text-body" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 10h16m-8-3V4M7 7V4m10 3V4M5 20h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Zm3-7h.01v.01H8V13Zm4 0h.01v.01H12V13Zm4 0h.01v.01H16V13Zm-8 4h.01v.01H8V17Zm4 0h.01v.01H12V17Zm4 0h.01v.01H16V17Z"/>
+            </svg>
+          </div>
+          <%= form.text_field :to_date, class: "block w-full ps-9 pe-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand px-3 py-2.5 shadow-xs placeholder:text-body", placeholder: "Select date", datepicker: "" %>
+        </div>
+      </div>
+
+      <div>
+        <%= form.label :kind, "Type", class: "block mb-2.5 text-sm font-medium text-heading" %>
+        <%= form.select :kind,
+                        Transaction.kinds.keys.map { |k| [k.titleize, k] },
+                        { include_blank: "Select type" },
+                        class: "block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body",
+                        placeholder: "Search transactions..."
+        %>
+      </div>
+
+      <div>
+        <%= form.label :account_id, "Account", class: "block mb-2.5 text-sm font-medium text-heading" %>
+        <%= form.collection_select :account_id,
+                                   current_user.accounts,
+                                   :id,
+                                   :name,
+                                   { prompt: "Select account" },
+                                   { class: "block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body", }
+        %>
+      </div>
+
+      <div>
+        <%= form.label :category_id, "Category", class: "block mb-2.5 text-sm font-medium text-heading" %>
+        <%= form.collection_select :category_id,
+                                   current_user.categories,
+                                   :id,
+                                   :name,
+                                   { prompt: "Select category" },
+                                   { class: "block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body", }
+        %>
+      </div>
+    <% end %>
+  <% end %>
+</section>
+
+<section>
+  <%= render Ui::CardComponent.new do %>
+    <%= turbo_frame_tag "transaction_list" do %>
+      <% render partial: "transactions/transaction_list", locals: { transactions: @transactions } %>
+    <% end %>
+  <% end %>
+</section>
+
+
+<%= turbo_frame_tag Transaction.new %>

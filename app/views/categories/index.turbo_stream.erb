@@ -1,2 +1,4 @@
 <%# Empty frame to close the modal %>
-<%= turbo_stream.update Category.new, "" %>
+<%= turbo_stream.update "categories_list"  do %>
+  <%= render partial: "categories/category_list", locals: { categories: @categories } %>" %>
+<% end %>

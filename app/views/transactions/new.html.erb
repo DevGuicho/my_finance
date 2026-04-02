@@ -1,0 +1,5 @@
+<%= turbo_frame_tag @transaction do %>
+  <%= render "shared/modal", title: "Add Transaction" do %>
+    <%= render partial: "transactions/form", locals: { transaction: @transaction } %>
+  <% end %>
+<% end %>

@@ -7,27 +7,27 @@
   <section class="flex justify-between gap-6">
     <%= render(Dashboard::StatCardComponent.new(title: "Total Balance",
                                                 subtitle: "Across all accounts",
-                                                amount: "$17,240.25")) do %>
+                                                amount: humanized_money_with_symbol(@total_balance))) do %>
       <%= lucide_icon "wallet", class: "text-body w-5 h-5" %>
     <% end %>
 
     <%= render(Dashboard::StatCardComponent.new(title: "Total Income",
                                                 subtitle: "This month",
-                                                amount: "+$6,670.00",
+                                                amount: humanized_money_with_symbol(@total_income),
                                                 variant: :positive)) do %>
       <%= lucide_icon "trending-up", class: "text-green-500 w-5 h-5" %>
     <% end %>
 
     <%= render(Dashboard::StatCardComponent.new(title: "Total Expenses",
                                                 subtitle: "This month",
-                                                amount: "-$907.89",
+                                                amount: "-#{humanized_money_with_symbol(@total_expenses)}",
                                                 variant: :negative)) do %>
       <%= lucide_icon "trending-down", class: "text-red-500 w-5 h-5" %>
     <% end %>
 
     <%= render(Dashboard::StatCardComponent.new(title: "Net Income",
                                                 subtitle: "This month",
-                                                amount: "+$5,762.11",
+                                                amount: "+#{humanized_money_with_symbol(@net_income)}",
                                                 variant: :positive)) do %>
       <%= lucide_icon "move-up-right", class: "text-green-500 w-5 h-5" %>
     <% end %>

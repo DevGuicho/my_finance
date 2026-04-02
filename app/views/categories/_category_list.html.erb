@@ -1,0 +1,7 @@
+<div class="grid grid-cols-3 gap-6">
+  <% if categories.any? %>
+    <%= render Categories::CategoryComponent.with_collection(categories) %>
+  <% else %>
+    <p class="text-gray-500">No categories found for the actual selection</p>
+  <% end %>
+</div>
