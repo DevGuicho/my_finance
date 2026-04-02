@@ -2,7 +2,7 @@
   <ul class="flex bg-gray-100 rounded-lg p-1 text-xs font-medium text-gray-500">
     <% @tabs.each do |tab| %>
       <li>
-        <%= link_to categories_path(kind: tab),
+        <%= link_to categories_path(kind: tab.downcase),
                     class: button_classes(tab), data: { "filter-tabs-target" => "tab",
                                                         "data-tab-name" => tab.downcase,
                                                         action: "click->filter-tabs#selectTab",

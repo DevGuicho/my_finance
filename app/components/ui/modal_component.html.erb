@@ -1,0 +1,10 @@
+<dialog
+  id="<%= id %>"
+  class=""
+  data-controller="modal"
+  data-modal-close-on-backdrop-value="<%= close_on_backdrop %>"
+  data-modal-close-on-escape-value="<%= close_on_escape %>">
+  <div class="flex overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
+    <%= content %>
+  </div>
+</dialog>
