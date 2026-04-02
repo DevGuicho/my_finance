@@ -12,7 +12,15 @@ class TransactionsController < ApplicationController
   end
 
   def create
+
+    account = policy_scope(Account).find(transaction_params[:account_id])
+    category = policy_scope(Category).find(transaction_params[:category_id])
+
     @transaction = current_user.transactions.build(transaction_params)
+    @transaction.category = category
+    @transaction.account = account
+
+    authorize @transaction
 
     if @transaction.save
       respond_to do |format|
@@ -26,6 +34,6 @@ class TransactionsController < ApplicationController
   private
 
   def transaction_params
-    params.require(:transaction).permit(:amount, :occurred_on, :category_id, :account_id, :description, :kind)
+    params.require(:transaction).permit(policy(Transaction).permitted_attributes)
   end
 end
