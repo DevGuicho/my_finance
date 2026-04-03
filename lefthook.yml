@@ -2,7 +2,7 @@ pre-commit:
   parallel: false
   commands:
     rubocop:
-      run: bundle exec rubocop
+      run: bin/rubocop
 
     erb_lint:
       run: bundle exec erb_lint app/views app/components
