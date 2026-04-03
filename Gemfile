@@ -84,7 +84,7 @@ group :development, :test do
   gem "letter_opener"
   gem "letter_opener_web"
 
-  gem "lefthook"
+  gem "lefthook", require: false
 end
 
 group :development do
