@@ -83,6 +83,8 @@ group :development, :test do
   # Preview email in the default browser instead of sending it.
   gem "letter_opener"
   gem "letter_opener_web"
+
+  gem "lefthook"
 end
 
 group :development do
