@@ -7,7 +7,7 @@ default: &default
   host: <%= ENV.fetch("MY_FINANCE_DATABASE_HOST", "db.my_finance.local") %>
   port: 5432
   username: <%= ENV.fetch("MY_FINANCE_DATABASE_USERNAME", "my_finance") %>
-  password: my_finance_password
+  password: <%= ENV.fetch("MY_FINANCE_DATABASE_PASSWORD", "my_finance_password") %>
 
 
 
@@ -49,8 +49,6 @@ production:
   primary: &primary_production
     <<: *default
     database: my_finance_production
-    username: my_finance
-    password: <%= ENV["MY_FINANCE_DATABASE_PASSWORD"] %>
   cache:
     <<: *primary_production
     database: my_finance_production_cache
