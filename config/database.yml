@@ -4,7 +4,7 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   max_connections: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: db.my_finance.local
+  host: <%= ENV.fetch("MY_FINANCE_DATABASE_HOST", "db.my_finance.local") %>
   port: 5432
   username: my_finance
   password: my_finance_password
