@@ -36,6 +36,12 @@ class ApplicationPolicy
     false
   end
 
+  private
+
+  def owner?
+    record.user == user
+  end
+
   class Scope
     def initialize(user, scope)
       @user = user
@@ -49,9 +55,5 @@ class ApplicationPolicy
     private
 
     attr_reader :user, :scope
-
-    def owner?
-      record.user == user
-    end
   end
 end

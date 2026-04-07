@@ -1,7 +1,8 @@
 FactoryBot.define do
   factory :account do
-    name { "MyString" }
-    kind { 1 }
+    association :user
+    sequence(:name) { |n| "#{Faker::Bank.name} #{n}" }
+    kind { Account.kinds.keys.sample }
     active { false }
   end
 end
