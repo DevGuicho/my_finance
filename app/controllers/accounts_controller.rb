@@ -5,7 +5,7 @@ class AccountsController < ApplicationController
   before_action :set_account, only: [ :destroy, :edit, :update ]
 
   def index
-    @accounts = current_user.accounts
+    @accounts = current_user.accounts.includes(:transactions)
     authorize @accounts
   end
 
@@ -30,6 +30,7 @@ class AccountsController < ApplicationController
   end
 
   def edit
+    authorize @account
   end
 
   def update
@@ -38,9 +39,13 @@ class AccountsController < ApplicationController
     if @account.update(account_params)
       respond_to do |format|
         format.turbo_stream
+        format.html do
+          flash[:notice] = "Account was successfully updated."
+          redirect_to accounts_path
+        end
       end
     else
-      render :new, status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -50,6 +55,10 @@ class AccountsController < ApplicationController
     @account.destroy
     respond_to do |format|
       format.turbo_stream
+      format.html do
+        flash[:notice] = "Account was successfully destroyed."
+        redirect_to accounts_path
+      end
     end
   end
 

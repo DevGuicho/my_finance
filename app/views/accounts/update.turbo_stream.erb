@@ -1,7 +1,7 @@
 <%# Remove the modal from the DOM %>
 <%= turbo_stream.update "accounts_modal", "" %>
 
-<%# Update the category card %>
+<%# Update the account card %>
 <%= turbo_stream.replace @account do %>
   <%= render Accounts::AccountComponent.new(account: @account) %>
 <% end %>

@@ -79,6 +79,7 @@ RSpec.describe "/accounts", type: :request do
     end
   end
 
+
   describe "DELETE /destroy" do
     it "deletes an account owned by the signed in user" do
       account = create(:account, user: user)
