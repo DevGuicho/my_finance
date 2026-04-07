@@ -1,0 +1,10 @@
+<section class="mb-8 flex justify-between items-center border border-primary-500 rounded p-5 bg-linear-to-r from-primary-100 to-primary-50">
+  <div>
+    <h6 class="text-body-subtle mb-2">Total Balance</h6>
+    <p class="text-4xl font-bold mb-2"><%= helpers.humanized_money_with_symbol(balance) %></p>
+    <p class="text-body-subtle">Across <%= accounts.size %> accounts</p>
+  </div>
+  <div class="relative inline-flex items-center justify-center w-15 h-15 overflow-hidden bg-brand rounded-base">
+    <%= helpers.lucide_icon "wallet", class: "w-8 h-8 text-white" %>
+  </div>
+</section>

@@ -2,12 +2,11 @@
 
 class AccountsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_account, only: [ :destroy, :edit, :update ]
 
   def index
     @accounts = current_user.accounts
-
-    @balance = current_user.accounts.sum(:initial_balance_cents)
-    @balance = Money.new(@balance, "MXN")
+    authorize @accounts
   end
 
   def new
@@ -30,9 +29,37 @@ class AccountsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    authorize @account
+
+    if @account.update(account_params)
+      respond_to do |format|
+        format.turbo_stream
+      end
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    authorize @account
+
+    @account.destroy
+    respond_to do |format|
+      format.turbo_stream
+    end
+  end
+
   private
 
   def account_params
-    params.require(:account).permit(:name, :kind, :initial_balance, :initial_balance_currency)
+    params.require(:account).permit(:name, :kind, :current_balance, :current_balance_currency)
+  end
+
+  def set_account
+    @account = Account.find(params[:id])
   end
 end

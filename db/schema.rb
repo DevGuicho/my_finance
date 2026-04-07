@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_29_230725) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_07_185242) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "accounts", force: :cascade do |t|
     t.boolean "active", default: true, null: false
     t.datetime "created_at", null: false
-    t.integer "initial_balance_cents", default: 0, null: false
-    t.string "initial_balance_currency", default: "MXN", null: false
+    t.integer "current_balance_cents", default: 0, null: false
+    t.string "current_balance_currency", default: "MXN", null: false
     t.integer "kind", null: false
     t.string "name"
     t.datetime "updated_at", null: false

@@ -4,7 +4,7 @@ class DashboardController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @total_balance = current_user.accounts.sum(:initial_balance_cents)
+    @total_balance = current_user.accounts.sum(:current_balance_cents)
     @total_balance = Money.new(@total_balance, "MXN")
 
     @total_income = current_user.transactions.income.sum(:amount_cents)
