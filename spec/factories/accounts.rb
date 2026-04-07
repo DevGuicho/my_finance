@@ -1,7 +1,8 @@
 FactoryBot.define do
   factory :account do
-    name { "MyString" }
-    kind { 1 }
+    association :user
+    sequence(:name) { |n| "Account #{n}" }
+    kind { Account.kinds.keys.first }
     active { false }
   end
 end

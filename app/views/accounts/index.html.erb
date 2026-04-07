@@ -4,23 +4,16 @@
     <p class="text-body-subtle">Manage your financial accounts</p>
   </div>
   <%= link_to new_account_path,
-              data: { turbo_frame: dom_id(Account.new) },
+              data: { turbo_frame: "accounts_modal" },
               class: "cursor-pointer inline-flex items-center  text-white bg-brand hover:bg-brand-strong box-border border border-transparent focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-3 py-2 focus:outline-none" do %>
     <%= lucide_icon "plus", class: "w-4 h-4 me-1.5 -ms-0.5" %>
     Add Account
   <% end %>
 </section>
 
-<section class="mb-8 flex justify-between items-center border border-primary-500 rounded p-5 bg-linear-to-r from-primary-100 to-primary-50">
-  <div>
-    <h6 class="text-body-subtle mb-2">Total Balance</h6>
-    <p class="text-4xl font-bold mb-2"><%= humanized_money_with_symbol(@balance) %></p>
-    <p class="text-body-subtle">Across <%= @accounts.size %> accounts</p>
-  </div>
-  <div class="relative inline-flex items-center justify-center w-15 h-15 overflow-hidden bg-brand rounded-base">
-    <%= lucide_icon "wallet", class: "w-8 h-8 text-white" %>
-  </div>
-</section>
+<div id="accounts_banner">
+  <%= render Accounts::BannerComponent.new(accounts: @accounts) %>
+</div>
 
 <section>
   <% if @accounts.any? %>
@@ -30,4 +23,4 @@
   <% end %>
 </section>
 
-<%= turbo_frame_tag Account.new %>
+<%= turbo_frame_tag "accounts_modal" %>

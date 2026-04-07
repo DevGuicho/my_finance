@@ -1,15 +1,15 @@
 <%# Remove the modal from the DOM %>
 <%= turbo_stream.update "accounts_modal", "" %>
 
-<%# Update the categories list %>
-<%= turbo_stream.update "account_list" do %>
-  <%= render partial: "accounts/account_list", locals: { accounts: current_user.accounts } %>
+<%# Update the account card %>
+<%= turbo_stream.replace @account do %>
+  <%= render Accounts::AccountComponent.new(account: @account) %>
 <% end %>
 
 <%# Show flash notice %>
 <%= turbo_stream.prepend "flash" do %>
   <div class="bg-green-50 border border-green-200 text-green-800 rounded-lg p-4 mb-4">
-    Account was successfully created.
+    Account was successfully updated.
   </div>
 <% end %>
 

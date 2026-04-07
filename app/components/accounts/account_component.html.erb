@@ -1,34 +1,64 @@
-<%= render Ui::CardComponent.new(class: "hover:shadow-lg") do %>
-  <div class="flex justify-start items-center gap-3 mb-8">
-    <div class="relative inline-flex items-center justify-center w-13 h-13 overflow-hidden bg-green-50 rounded-base">
-      <span class="font-medium text-body">💳</span>
+<div id="<%= helpers.dom_id(account) %>" data-test-account-component>
+  <%= render Ui::CardComponent.new(class: "hover:shadow-lg") do %>
+    <div class="flex justify-between items-center gap-3 mb-8">
+      <div class="flex items-center gap-3">
+        <div class="relative inline-flex items-center justify-center w-13 h-13 overflow-hidden bg-green-50 rounded-base">
+          <span class="font-medium text-body">💳</span>
+        </div>
+        <div>
+          <h4 class="text-xl mb-1"><%= account.name %></h4>
+          <span class="bg-brand-softer text-fg-brand-strong text-sm font-medium px-2 py-1 rounded"><%= account.kind.titleize %></span>
+        </div>
+      </div>
+
+
+      <button data-dropdown-toggle="<%= helpers.dom_id(account) %>_dropdown" class="text-heading bg-transparent box-border border border-transparent hover:bg-neutral-secondary-medium focus:ring-4 focus:ring-neutral-tertiary font-medium leading-5 rounded-base text-xs px-1.5 py-1.5 focus:outline-none" type="button">
+        <%= helpers.lucide_icon "ellipsis-vertical", class: "w-5 h-5 " %>
+      </button>
+
+      <!-- Dropdown menu -->
+      <div id="<%= helpers.dom_id(account) %>_dropdown" class="z-10 hidden bg-neutral-primary-medium border border-default-medium rounded-base shadow-lg w-44">
+        <ul class="p-2 text-sm text-body font-medium">
+          <li>
+            <%= link_to "Edit", helpers.edit_account_path(account),
+                        data: { turbo_frame: "accounts_modal" },
+                        class: "inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded" %>
+
+          </li>
+          <li>
+            <%= helpers.link_to "Delete", helpers.account_path(account), class: "inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded",
+                                data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+          </li>
+        </ul>
+      </div>
     </div>
+
     <div>
-      <h4 class="text-xl mb-1"><%= account.name %></h4>
-      <span class="bg-brand-softer text-fg-brand-strong text-sm font-medium px-2 py-1 rounded"><%= account.kind.titleize %></span>
+      <p class="text-body text-sm mb-1">Current Balance</p>
+      <p class="text-3xl font-semibold mb-1 <%= balance_color %>"><%= helpers.humanized_money_with_symbol(account.current_balance) %></p>
+      <small class="text-body-subtle"><%= account.current_balance_currency %></small>
     </div>
-  </div>
 
-  <div>
-    <p class="text-body text-sm mb-1">Current Balance</p>
-    <p class="text-3xl font-semibold mb-1"><%= helpers.humanized_money_with_symbol(account.initial_balance) %></p>
-    <small class="text-body-subtle"><%= account.initial_balance_currency %></small>
-  </div>
-
-  <div class="py-3 mt-3 flex justify-between border-b border-b-gray-200 border-t border-t-gray-200">
-    <div class="grow">
-      <p class="flex gap-2">
-        <%= helpers.lucide_icon "trending-up", class: "text-green-500 h-5 w-5" %>
-        <small class="text-body-subtle">Income</small>
-      </p>
-      <small class="text-green-500">+$2500.00</small>
+    <!--
+    <div class="py-3 mt-3 flex justify-between border-b border-b-gray-200 border-t border-t-gray-200">
+      <div class="grow">
+        <p class="flex gap-2">
+          <%  helpers.lucide_icon "trending-up", class: "text-green-500 h-5 w-5" %>
+          <small class="text-body-subtle">Income</small>
+        </p>
+        <small class="text-green-500">+$2500.00</small>
+      </div>
+      <div class="grow">
+        <p class="flex gap-2">
+          <%  helpers.lucide_icon "trending-down", class: "text-red-500 h-5 w-5" %>
+          <small class="text-body-subtle">Expenses</small>
+        </p>
+        <small class="text-red-500">-$2500.00</small>
+      </div>
     </div>
-    <div class="grow">
-      <p class="flex gap-2">
-        <%= helpers.lucide_icon "trending-down", class: "text-red-500 h-5 w-5" %>
-        <small class="text-body-subtle">Expenses</small>
-      </p>
-      <small class="text-red-500">-$2500.00</small>
+-->
+    <div class="mt-3 border-t border-t-gray-200">
+      <small class="text-body-subtle"><%= transactions_this_month %> transactions this month</small>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
