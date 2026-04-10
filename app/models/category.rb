@@ -1,5 +1,6 @@
 class Category < ApplicationRecord
   belongs_to :user
+  has_many :transactions, dependent: :destroy
 
   enum :kind, { income: 1, expense: 2 }
 

@@ -1,0 +1,15 @@
+<section class="flex justify-between gap-6 mb-8">
+  <%= render(Dashboard::StatCardComponent.new(title: "Total Categories",
+                                              subtitle: "All categories",
+                                              amount: total_categories)) %>
+
+  <%= render(Dashboard::StatCardComponent.new(title: "Income Categories",
+                                              subtitle: "Active income categories",
+                                              amount: income_categories,
+                                              variant: :positive)) %>
+
+  <%= render(Dashboard::StatCardComponent.new(title: "Expense Categories",
+                                              subtitle: "Active expense categories",
+                                              amount: expenses_categories,
+                                              variant: :negative)) %>
+</section>
