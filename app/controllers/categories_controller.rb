@@ -2,9 +2,12 @@
 
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_category, only: [ :edit, :update, :destroy ]
 
   def index
     @categories = filter_categories
+
+    authorize @categories
 
     respond_to do |format|
       format.html
@@ -12,9 +15,10 @@ class CategoriesController < ApplicationController
     end
   end
 
-
   def new
     @category = Category.new
+
+    authorize @category
 
     respond_to do |format|
       format.html
@@ -24,6 +28,8 @@ class CategoriesController < ApplicationController
 
   def create
     @category = current_user.categories.build(category_params)
+
+    authorize @category
 
     if @category.save
       respond_to do |format|
@@ -38,7 +44,39 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def edit
+    @category = Category.find(params[:id])
+    authorize @category
+  end
+
+  def update
+    authorize @category
+
+    if @category.update(category_params)
+      respond_to do |format|
+        format.html
+        format.turbo_stream
+      end
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    authorize @category
+    @category.destroy
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
+  end
+
   private
+
+  def set_category
+    @category = Category.find(params[:id])
+  end
 
   def category_params
     params.require(:category).permit(:name, :kind)
@@ -49,7 +87,7 @@ class CategoriesController < ApplicationController
   end
 
   def filter_categories
-    categories = current_user.categories
+    categories = Category.all
 
     case permitted_filter
     when "income"

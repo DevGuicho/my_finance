@@ -11,7 +11,6 @@
         </div>
       </div>
 
-
       <button data-dropdown-toggle="<%= helpers.dom_id(account) %>_dropdown" class="text-heading bg-transparent box-border border border-transparent hover:bg-neutral-secondary-medium focus:ring-4 focus:ring-neutral-tertiary font-medium leading-5 rounded-base text-xs px-1.5 py-1.5 focus:outline-none" type="button">
         <%= helpers.lucide_icon "ellipsis-vertical", class: "w-5 h-5 " %>
       </button>
@@ -43,14 +42,14 @@
     <div class="py-3 mt-3 flex justify-between border-b border-b-gray-200 border-t border-t-gray-200">
       <div class="grow">
         <p class="flex gap-2">
-          <%  helpers.lucide_icon "trending-up", class: "text-green-500 h-5 w-5" %>
+          <% helpers.lucide_icon "trending-up", class: "text-green-500 h-5 w-5" %>
           <small class="text-body-subtle">Income</small>
         </p>
         <small class="text-green-500">+$2500.00</small>
       </div>
       <div class="grow">
         <p class="flex gap-2">
-          <%  helpers.lucide_icon "trending-down", class: "text-red-500 h-5 w-5" %>
+          <% helpers.lucide_icon "trending-down", class: "text-red-500 h-5 w-5" %>
           <small class="text-body-subtle">Expenses</small>
         </p>
         <small class="text-red-500">-$2500.00</small>
